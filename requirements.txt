@@ -1,0 +1,7 @@
+flask
+transformers
+torch
+pypdf2
+rake-nltk
+nltk
+fpdf

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Assistant</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+<script>
+    const form = document.querySelector("form");
+
+    if (form) {
+        form.addEventListener("submit", () => {
+            const loading = document.createElement("p");
+            loading.innerText = "⏳ Processing your notes...";
+            loading.style.color = "blue";
+            document.body.appendChild(loading);
+        });
+    }
+</script>
+
+<body>
+
+    <div class="container">
+
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h1>📚 AI Study Assistant</h1>
+            <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        </div>
+        <p>Upload your notes and get AI generated summaries and questions.</p>
+        <p><b>Total Notes Loaded:</b> {{ files|length }}</p>
+        <h2>Upload Notes</h2>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+            <div class="upload-box">
+                <p>Drag & Drop your notes here</p>
+                <p>or</p>
+
+                <input type="file" name="file" id="fileInput">
+                <p id="fileName"></p>
+
+            </div>
+
+            <button type="submit">Upload</button>
+
+        </form>
+
+        {% if filename %}
+        <div class="success-message">
+            File uploaded successfully: <b>{{ filename }}</b>
+        </div>
+        {% endif %}
+
+        {% if summary %}
+
+        <h3>AI Summary</h3>
+
+        <div class="summary-box">
+            {{ summary }}
+        </div>
+
+        {% endif %}
+
+        {% if summary %}
+
+        <a href="/download_summary">
+            <button>Download Summary as PDF</button>
+        </a>
+
+        {% endif %}
+
+        <h3>Ask a Question from the PDF</h3>
+
+        <form action="/ask" method="POST">
+            <input type="text" name="question" placeholder="Ask something about the document..." required>
+            <button type="submit">Ask</button>
+        </form>
+
+        {% if answer %}
+        <p><b>Answer:</b> {{ answer }}</p>
+        {% endif %}
+
+        <hr>
+
+        <h3>Generate Quiz from Notes</h3>
+
+        <a href="/quiz">
+            <button>Generate Quiz</button>
+        </a>
+        {% if quiz %}
+
+        <h3>Quiz Questions</h3>
+
+        <ul>
+            {% for q in quiz %}
+            <li>{{ q }}</li>
+            {% endfor %}
+        </ul>
+
+        {% endif %}
+
+        <h3>Extract Important Keywords</h3>
+
+        <a href="/keywords">
+            <button>Show Keywords</button>
+        </a>
+
+        {% if keywords %}
+
+        <h3>Important Keywords</h3>
+
+        <ul>
+            {% for k in keywords %}
+            <li>{{ k }}</li>
+            {% endfor %}
+        </ul>
+
+        {% endif %}
+
+        <h3>Uploaded Notes</h3>
+
+        <div class="file-list">
+
+            {% for file in files %}
+
+            <div class="file-item">
+
+                <span>📄 {{ file }}</span>
+
+                <div class="file-actions">
+                    <a href="/preview/{{ file }}" target="_blank">Preview</a>
+                    <a href="/download/{{ file }}">Download</a>
+                    <a href="/delete/{{ file }}">Delete</a>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+    <hr>
+
+    <footer style="text-align:center; margin-top:20px; color:#777;">
+        AI Study Assistant • Built with Flask + NLP • 2026
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

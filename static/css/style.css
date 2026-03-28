@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2,
+h3 {
+    color: #444;
+}
+
+.upload-box {
+    border: 2px dashed #2575fc;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: #f7f9ff;
+}
+
+.upload-box:hover {
+    background: #eef2ff;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+}
+
+button {
+    background: #2575fc;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #1b5edb;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 70%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.summary-box {
+    background: #f1f5ff;
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid #2575fc;
+    margin-bottom: 15px;
+}
+
+.file-list {
+    margin-top: 20px;
+}
+
+.file-item {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-actions a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #2575fc;
+    font-weight: bold;
+}
+
+.file-actions a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.dark-mode {
+    background: #121212;
+    color: #f1f1f1;
+}
+
+.dark-mode .container {
+    background: #1e1e1e;
+}
+
+.dark-mode .summary-box {
+    background: #2b2b2b;
+    border-left: 4px solid #6a9cff;
+}
+
+.dark-mode .file-item {
+    background: #2a2a2a;
+}
+
+.dark-mode button {
+    background: #444;
+}
+
+.dark-mode input[type="text"] {
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #555;
+}
